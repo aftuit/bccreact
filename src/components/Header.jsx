@@ -1,5 +1,4 @@
 import React from "react";
-// import Image from "next/image";
 import { Button } from '@mantine/core';
 import Fade from 'react-reveal/Fade';
 import Navbar from "./Navbar.jsx";
@@ -22,7 +21,7 @@ const Header = ({ lang, languageType }) => {
 
                     <Fade bottom>
                         <a href="#apartments">
-                            <Button size="md" className="mt-4">
+                            <Button size="md" className="mt-5">
                                 {lang[languageType].header.button}
                             </Button>
                         </a>

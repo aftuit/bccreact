@@ -1,9 +1,7 @@
 import React from 'react'
-import Reveal from 'react-reveal/Reveal';
 import Fade from 'react-reveal/Fade';
 import Title from "./Title";
 import style from "../styles/mission.module.scss";
-// import Image from "next/image"
 
 const Missions = ({lang, languageType}) => {
 
@@ -14,7 +12,7 @@ const Missions = ({lang, languageType}) => {
     ]
 
     return (
-        <div className={style.missionWrap}>
+        <div className={style.missionWrap} >
             <div className={style.imageWrapper}>
                 <img src="/assets/img/kontur.png" alt="" layout="fill" className={style.image + " " + style.contur}/>
             </div>

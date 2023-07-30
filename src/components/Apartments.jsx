@@ -2,8 +2,9 @@ import React from 'react';
 import Title from "./Title";
 import { Button } from '@mantine/core';
 import { Switch } from '@mantine/core';
+import { apartment } from '../util/mock';
 import style from "../styles/apartment.module.scss";
-const Apartments = ({ lang, languageType, apartment }) => {
+const Apartments = ({ lang, languageType }) => {
 
 
     const [isOn, setIsOn] = React.useState(true);
@@ -22,11 +23,12 @@ const Apartments = ({ lang, languageType, apartment }) => {
     }
 
     return (
+ 
         <div className={style.apartments} id="apartments">
             <div className='container'>
                 <Title title={""} desc={lang[languageType].apartments.desc} />
             </div>
-              <div className="container mt-5">
+            <div className="container mt-5">
                 <div className={" row row-md-reverse"}>
                     <div className={" col col-md-5 col-12"}>
                         <div className={style.selectGroup + " w-100"}>
@@ -48,38 +50,41 @@ const Apartments = ({ lang, languageType, apartment }) => {
                             <div className={style.apartCardBody}>
                                 <div className={style.priceRow + " row"}>
                                     <div className="col-6 text-center">
-                                        <div>{lang[languageType].apartments.total}<b>{apartment && apartment[floor][quantity][roomIndex]?.price}</b> {languageType === "uz" ? "so'mdan boshlab" : "сум"}</div>
+                                        <div>{lang[languageType].apartments.total}<b>{apartment && apartment[floor][quantity][roomIndex]?.price}</b> {languageType === "uz" ? "so'mdan boshlab" : languageType === "ru" ? "сум" : "soum"}</div>
                                     </div>
                                     <div className="col-6 text-center">
-                                        {lang[languageType].apartments.area}<b>{apartment[floor][quantity][roomIndex]?.area} {languageType === "uz" ? "m² dan boshlab" : "м²"}</b>
+                                        {lang[languageType].apartments.area}<b>{apartment[floor][quantity][roomIndex]?.area} {languageType === "uz" ? "m² dan boshlab" : languageType === "ru" ? "м²" : "m²"}</b>
                                     </div>
                                 </div>
                                 <div className="informs">
                                     <div className="informs_body d-flex justify-content-between p-2 border-bottom">
                                         <div>{lang[languageType].apartments.balcony}</div>
-                                        <div>{apartment[floor][quantity][roomIndex]?.balcony} {languageType === "uz" ? "m²" : "м²"}</div>
+                                        <div>
+                                            {apartment[floor][quantity][roomIndex]?.balcony}
+                                            {languageType === "uz" || languageType === "en" ? "m²" : "м²"}
+                                        </div>
                                     </div>
                                     <div className="informs_body d-flex justify-content-between p-2 border-bottom">
                                         <div>{lang[languageType].apartments.bedroom}</div>
-                                        <div>{apartment[floor][quantity][roomIndex]?.bedroom} {languageType === "uz" ? "m²" : "м²"}</div>
+                                        <div>{apartment[floor][quantity][roomIndex]?.bedroom} {languageType === "uz" || languageType === "en" ? "m²" : "м²"}</div>
                                     </div>
                                     <div className="informs_body d-flex justify-content-between p-2 border-bottom">
                                         <div>{lang[languageType].apartments.bathroom}</div>
-                                        <div>{apartment[floor][quantity][roomIndex]?.bathroom} {languageType === "uz" ? "m²" : "м²"}</div>
+                                        <div>{apartment[floor][quantity][roomIndex]?.bathroom} {languageType === "uz" || languageType === "en" ? "m²" : "м²"}</div>
                                     </div>
                                     <div className="informs_body d-flex justify-content-between p-2 border-bottom">
                                         <div>{lang[languageType].apartments.hallway}</div>
-                                        <div>{apartment[floor][quantity][roomIndex]?.hall} {languageType === "uz" ? "m²" : "м²"}</div>
+                                        <div>{apartment[floor][quantity][roomIndex]?.hall} {languageType === "uz" || languageType === "en" ? "m²" : "м²"}</div>
                                     </div>
                                     <div className="informs_body d-flex justify-content-between p-2 border-bottom">
                                         <div>{lang[languageType].apartments.kitchen}</div>
-                                        <div>{apartment[floor][quantity][roomIndex]?.kitchen} {languageType === "uz" ? "m²" : "м²"}</div>
+                                        <div>{apartment[floor][quantity][roomIndex]?.kitchen} {languageType === "uz" || languageType === "en" ? "m²" : "м²"}</div>
                                     </div>
                                     {
                                         apartment[floor][quantity][roomIndex]?.living_room ?
                                             <div className="informs_body d-flex justify-content-between p-2 border-bottom">
                                                 <div>{lang[languageType].apartments.living_room}</div>
-                                                <div>{apartment[floor][quantity][roomIndex]?.living_room} {languageType === "uz" ? "m²" : "м²"}</div>
+                                                <div>{apartment[floor][quantity][roomIndex]?.living_room} {languageType === "uz" || languageType === "en" ? "m²" : "м²"}</div>
                                             </div> :
                                             <></>
                                     }
@@ -99,10 +104,10 @@ const Apartments = ({ lang, languageType, apartment }) => {
                             <img
                                 alt='Mountains'
                                 src={isOn ?
-                                    apartment[floor][quantity][roomIndex]?.image_2d:
-                                    apartment[floor][quantity][roomIndex]?.image_3d 
+                                    apartment[floor][quantity][roomIndex]?.image_2d :
+                                    apartment[floor][quantity][roomIndex]?.image_3d
                                 }
-                                style={{width: "100%", height: "100%"}}
+                                style={{ width: "100%", height: "100%" }}
                             />
                         </div>
                         <div className={style.switch + " d-flex align-items-center justify-content-between"}>
@@ -126,7 +131,7 @@ const Apartments = ({ lang, languageType, apartment }) => {
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
 
         </div >
     )

@@ -18,10 +18,10 @@ const Preview = ({lang, languageType}) => {
         autoplay: false,
     }
     const previews = [
-        { id: 1, img: '/assets/img/h3_img2.jpg', icon: '/assets/img/icon1.png', title: lang[languageType].preview.item1[0], desc: lang[languageType].preview.item1[1] },
-        { id: 2, img: '/assets/img/h3_img3.jpg', icon: '/assets/img/icon4.png', title: lang[languageType].preview.item2[0], desc: lang[languageType].preview.item2[1] },
-        { id: 3, img: '/assets/img/h3_img4.jpg', icon: '/assets/img/icon3.png', title: lang[languageType].preview.item3[0], desc: lang[languageType].preview.item3[1] },
-        { id: 4, img: '/assets/img/h3_img3.jpg', icon: '/assets/img/icon2.png', title: lang[languageType].preview.item4[0], desc: lang[languageType].preview.item4[1] },
+        { id: 1, img: '/assets/img/4.jpg', icon: '/assets/img/icon1.png', title: lang[languageType].preview.item1[0], desc: lang[languageType].preview.item1[1] },
+        { id: 2, img: '/assets/img/1.jpg', icon: '/assets/img/icon4.png', title: lang[languageType].preview.item2[0], desc: lang[languageType].preview.item2[1] },
+        { id: 3, img: '/assets/img/2.jpg', icon: '/assets/img/icon3.png', title: lang[languageType].preview.item3[0], desc: lang[languageType].preview.item3[1] },
+        { id: 4, img: '/assets/img/3.jpg', icon: '/assets/img/icon2.png', title: lang[languageType].preview.item4[0], desc: lang[languageType].preview.item4[1] },
     ]
 
     return (

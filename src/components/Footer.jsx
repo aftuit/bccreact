@@ -8,6 +8,8 @@ import style from "../styles/footer.module.scss"
 const Footer = ({ lang, languageType }) => {
 
   const [location, setLocation] = React.useState("1");
+  const [info, setInfo] = React.useState(false);
+  const [number, setNumber] = React.useState("");
   const formEl = React.useRef(null);
   function changeMap(pro) {
     setLocation(pro)
@@ -16,14 +18,18 @@ const Footer = ({ lang, languageType }) => {
   function sendtoBot(e) {
     e.preventDefault();
     const { phone, name } = e.target.elements;
-    console.log({ name: name.value, phone: phone.value })
 
     axios.post("https://api.bccunitedteam.uz/bot/", {
       phone: phone.value.trim(),
       text: name.value.trim()
     })
-      .then(res => { console.log(res); formEl.current.reset(); })
-      .catch(err => console.log(err))
+      .then(res => {
+        setInfo(true)
+        setNumber("")
+        phone.value = "";
+        name.value = "";
+      })
+      .catch(err => { })
   }
 
   return (
@@ -44,16 +50,21 @@ const Footer = ({ lang, languageType }) => {
                     name="name"
                   /></div>
                 <div className="col-md-4 col-12">
-                  <NumberInput
+                  <TextInput
                     size='md'
                     label={lang[languageType].consultation.tel}
                     className="w-md-50 mx-md-2"
                     required
                     name="phone"
-                    hideControls
                   />
                 </div>
-                <div className="col-md-4 col-12"><Button size='md' type="submit" className="mt-4 w-md-50 ms-md-2">
+                <div >
+                  <div className={`mt-2 alert alert-success alert-dismissible fade show ${info ? "": "d-none"}`} role="alert">
+                    <strong>{lang[languageType].consultation.textb}</strong> <br /> {lang[languageType].consultation.texti}
+                    <button onClick={() => {setInfo(false)}} type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+                <div className="col-md-4 col-12"><Button size='md' type="submit" className="mt-2 w-md-50 ms-md-2">
                   {lang[languageType].consultation.button}
                 </Button></div>
               </div>
@@ -74,7 +85,7 @@ const Footer = ({ lang, languageType }) => {
           </div>
 
           <iframe
-          title="BCC Team United __"
+            title="BCC Team United __"
             src={
               location === "1" ?
                 "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2490.8816392109084!2d69.19558098852792!3d41.20787261097882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1suz!2s!4v1669234054429!5m2!1suz!2s" :
