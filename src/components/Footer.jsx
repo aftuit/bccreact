@@ -1,7 +1,6 @@
 import React from 'react'
-import { TextInput, NumberInput } from '@mantine/core';
+import { TextInput } from '@mantine/core';
 import { Button } from '@mantine/core';
-import axios from "axios";
 import style from "../styles/footer.module.scss"
 
 
@@ -9,7 +8,6 @@ const Footer = ({ lang, languageType }) => {
 
   const [location, setLocation] = React.useState("1");
   const [info, setInfo] = React.useState(false);
-  const [number, setNumber] = React.useState("");
   const formEl = React.useRef(null);
   function changeMap(pro) {
     setLocation(pro)
@@ -17,19 +15,6 @@ const Footer = ({ lang, languageType }) => {
 
   function sendtoBot(e) {
     e.preventDefault();
-    const { phone, name } = e.target.elements;
-
-    axios.post("https://api.bccunitedteam.uz/bot/", {
-      phone: phone.value.trim(),
-      text: name.value.trim()
-    })
-      .then(res => {
-        setInfo(true)
-        setNumber("")
-        phone.value = "";
-        name.value = "";
-      })
-      .catch(err => { })
   }
 
   return (
